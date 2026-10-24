@@ -1,0 +1,14 @@
+# Dataset (~2 GB): recreate it with `python prepare_data.py`
+data/
+
+# Resume checkpoints are only needed during training; the trained model itself is kept
+models/*_last.pt
+models/*.tmp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Local tool settings (contain paths specific to this PC)
+.claude/

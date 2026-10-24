@@ -1,0 +1,29 @@
+# docker compose up --build -d                     web app on http://localhost:8000
+# docker compose run --rm trainer                  train from scratch (train_scratch.py)
+# docker compose run --rm trainer python evaluate.py   any other script: prepare_data.py, train.py, ...
+
+x-app: &app
+  build: .
+  image: cat-vs-dog
+
+services:
+  web:
+    <<: *app
+    ports:
+      - "127.0.0.1:8000:8000"   # this computer only; use "8000:8000" to allow other devices on your network
+    volumes:
+      - ./models:/app/models:ro
+    restart: unless-stopped
+
+  trainer:
+    <<: *app
+    profiles: [tools]           # not started by "docker compose up", only by "docker compose run"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - torch-cache:/home/app/.cache/torch
+    shm_size: 2gb               # image-loading worker processes share data through /dev/shm
+    command: python train_scratch.py
+
+volumes:
+  torch-cache:

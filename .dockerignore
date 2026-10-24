@@ -1,0 +1,7 @@
+# data and models are mounted at run time (see docker-compose.yml), not baked into the image
+.venv
+data
+models
+__pycache__
+.claude
+*.zip

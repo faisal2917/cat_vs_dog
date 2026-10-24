@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cat or Dog?</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Cat or Dog?</h1>
+    <p class="sub">Choose a photo and your trained model will guess.</p>
+    <label class="drop" id="drop">
+      <input type="file" id="file" accept="image/*">
+      <img id="preview" alt="Your photo" hidden>
+      <span id="hint">Click to choose a photo, or drop one here</span>
+    </label>
+    <div id="result" aria-live="polite" hidden>
+      <p id="label"></p>
+      <div class="bar"><div id="bar-fill"></div></div>
+    </div>
+    <p class="model" id="model"></p>
+  </main>
+</body>
+</html>
